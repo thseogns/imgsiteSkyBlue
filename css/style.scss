@@ -1,0 +1,269 @@
+$large: "(max-width:1599px)";
+$large-semi: "(max-width:1199px)";
+$medium: "(max-width:899px)";
+$small: "(max-width:767px)";
+$mobile: "(max-width:539px)";
+$gradient: linear-gradient(45deg, #01f8f7, #001299);
+@mixin space {
+  display: block;
+  content: "";
+}
+ul::after,
+section::after {
+  @include space;
+  clear: both;
+}
+body {
+  font: {
+    family: "Roboto Condensed", sans-serif;
+    size: 10px;
+    weight: normal;
+  }
+}
+header {
+  position: fixed;
+  width: 400px;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background-image: $gradient; //그라디언트는 img
+
+  h1 {
+    position: absolute;
+    top: 50%;
+    left: 50px;
+    transform: translateY(-150%);
+    color: white;
+    letter-spacing: 0.04em;
+    font: {
+      family: "Roboto Condensed", sans-serif;
+      size: 8em;
+      weight: 400;
+    }
+    &::after {
+      @include space;
+      width: 160px;
+      height: 2px;
+      background-color: white;
+    }
+    &::before {
+      position: absolute;
+      @include space;
+      bottom: -4em;
+      content: "FRONTEND GALLERY";
+      font-size: 0.3rem;
+      opacity: 0.7;
+    }
+
+    @media #{$large} {
+      //1600보다 작아졌을때
+      left: 30px;
+    }
+    @media #{$large-semi} {
+      transform: translateY(-50%);
+      font-size: 3.5em;
+      &::after {
+        width: 70px;
+      }
+      &::before {
+        display: none;
+      }
+    }
+    @media #{$mobile} {
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 3.5em;
+      &::after {
+        width: 20px;
+      }
+    }
+  }
+
+  .sns {
+    position: absolute;
+    bottom: 100px;
+    right: 7em;
+    li {
+      float: left;
+      margin: 0 1em;
+      a {
+        color: #fff;
+        font-size: 1.3em;
+
+        i {
+          font-size: 1.3em;
+        }
+        span {
+          @media #{$medium} {
+            display: none;
+          }
+        }
+      }
+    }
+
+    @media #{$large-semi} {
+      bottom: 30px;
+      right: 1em;
+    }
+
+    @media #{$mobile} {
+      display: none;
+    }
+  } //sns end
+
+  @media #{$large} {
+    //1600보다 작아졌을때
+    width: 350px;
+  }
+  @media #{$large-semi} {
+    //1200보다 작아졌을때
+    width: 100%;
+    position: relative; //static은 위치값을 받지못함
+    height: 80px;
+  }
+}
+main {
+  margin-left: 400px;
+  padding: 20px;
+  @media #{$large} {
+    //1600보다 작아졌을때
+    margin-left: 350px;
+  }
+  @media #{$large-semi} {
+    //1200보다 작아졌을때
+    margin-left: 0;
+    width: 100%;
+  }
+}
+nav {
+  .btn {
+  }
+  li {
+    float: right;
+    width: 100px;
+    height: 25px;
+    margin-left: 20px;
+    a {
+      display: inline-block;
+      width: 100%;
+      height: 100%;
+      background-color: white;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      font: {
+        family: "Roboto Condensed", sans-serif;
+        size: 1.7em;
+        weight: bold;
+      }
+      text-align: center;
+      line-height: 25px;
+      color: #999;
+      letter-spacing: 0.1em;
+
+      &:hover {
+        background-image: $gradient;
+        color: white;
+        box-shadow: 0 0 10px rgba(93, 204, 93, 0.4);
+      }
+    }
+    @media #{$mobile} {
+      width: 33.33%;
+      margin-left: 0;
+      text-align: center;
+      a {
+        width: 90%;
+      }
+    }
+    &.on a {
+      background-image: $gradient;
+      color: white;
+      box-shadow: 0 0 10px rgba(93, 204, 93, 0.4);
+    }
+  }
+}
+article {
+  width: 20%;
+  float: left;
+  padding: 15px;
+  div {
+    box-shadow: 0 0 10px rgb(0 0 0 / 20%);
+    padding: 15px;
+    border-radius: 5px;
+    img {
+      width: 100%;
+    }
+    h2 {
+      margin: 10px 0 5px;
+      font: {
+        family: "Roboto Condensed", sans-serif;
+        size: 2em;
+        weight: bold;
+      }
+      color: #444;
+    }
+    p {
+      font-size: 1.1em;
+      color: #444;
+    }
+  }
+  @media #{$large} {
+    //1600보다 작아졌을때
+    width: 25%;
+  }
+  @media #{$medium} {
+    //1600보다 작아졌을때
+    width: 33.33%;
+  }
+  @media #{$small} {
+    //1600보다 작아졌을때
+    width: 50%;
+  }
+  @media #{$mobile} {
+    //1600보다 작아졌을때
+    width: 100%;
+  }
+}
+#popup {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.8);
+
+  div {
+    background: white;
+    padding: 50px;
+    border-radius: 5px;
+    box-shadow: 5px 5px 15px rgba(133, 251, 255, 0.8);
+  }
+  img {
+    width: auto;
+    height: auto;
+    max-width: 80vw;
+    max-height: 60vh;
+  }
+  h2 {
+    font: {
+      family: "Roboto Condensed", sans-serif;
+      size: 2em;
+      weight: bold;
+    }
+    margin: 16px 0 5px;
+  }
+  p {
+    font-size: 1.1em;
+    color: #777;
+  }
+
+  &.on {
+    display: flex;
+  }
+  @media #{$mobile} {
+    //1600보다 작아졌을때
+    display: none;
+  }
+}
